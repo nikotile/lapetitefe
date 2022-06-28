@@ -24,17 +24,10 @@
             </span>
           </router-link>
           <router-link
-            :to="{ name: 'manga-recommended' }" exact
-            class="flex flex-col w-12 h-12 text-white justify-center items-center transition duration-300 ease-id-out rounded-md hover:bg-purple hover:text-white":class="[routeName == 'manga-recommended' ? 'bg-purple' : '']">
+            :to="{ name: 'manga-catalog' }" exact
+            class="flex flex-col w-12 h-12 text-white justify-center items-center transition duration-300 ease-id-out rounded-md hover:bg-purple hover:text-white [routeName == 'manga-catalog' ? 'bg-purple' : '']">
             <span>
-              <Icon name="star" class="fill-current h-5 w-5 transition ease-in-out duration-200" />
-            </span>
-          </router-link>
-          <router-link
-            :to="{ name: 'manga-popular', params: { popularity: 'popular', page: 1 } }" exact
-            class="flex flex-col w-12 h-12 text-white justify-center items-center transition duration-300 ease-id-out rounded-md hover:bg-purple hover:text-white":class="[routeName == 'manga-popular' ? 'bg-purple' : '']">
-            <span>
-              <Icon name="trending-up" class="fill-current h-5 w-5 transition ease-in-out duration-200" />
+              <Icon name="book-open" class="fill-current h-5 w-5 transition ease-in-out duration-200" />
             </span>
           </router-link>
         </div>
