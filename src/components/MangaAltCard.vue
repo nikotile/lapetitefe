@@ -1,18 +1,19 @@
 <template>
-  <router-link
-    :to="{ name: 'manga-details', params: { manga: manga.endpoint } }" exact
-    class="w-full">
     <div
-      class="flex flex-col md:flex-row h-full max-h-50 bg-secondary text-white hover:text-green shadow-md rounded-md transform transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg">
-      <img
-        :src="thumb"
-        :alt="title"
-        class="w-full rounded-t-md md:rounded-l-md md:rounded-t-none md:w-2/5 h-36 object-cover"/>
+      class="flex flex-col md:flex-row h-full max-h-50 bg-secondary">
       <div class="p-3 md:pt-2 md:px-3">
-        <h1 v-html="title" class="font-ptserif text-md mb-1"></h1>
+        <router-link
+          :to="{ name: 'manga-details', params: { id } }" exact
+          class="w-full">
+          <h1 v-html="title" class="font-ptserif text-md mb-1 text-white hover:text-green shadow-md rounded-md transform transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"></h1>
+        </router-link>
+        <a class="m-1" v-for="tag in tags">
+          <button class="button py-1 px-2 text-xs rounded bg-gray-400 shadow-md rounded-md transform transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg">
+            {{ tag }}
+          </button>
+        </a>
       </div>
     </div>
-  </router-link>
 </template>
 
 <script>
@@ -21,8 +22,9 @@
       manga: Object,
     },
     computed: {
-      thumb() { return this.manga.thumb },
-      title() { return this.manga.title },
+      id() { return this.manga.id },
+      tags() { return this.manga.data.tags },
+      title() { return this.manga.data.titleJP },
     },
   };
 </script>

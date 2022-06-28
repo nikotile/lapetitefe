@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="text-white font-poppins font-semibold text-xl mb-5">
-      Latest & Newest Manga
+      Beranda
     </h1>
     <!-- Error -->
     <ErrorMsg v-if="error" />
@@ -14,28 +14,23 @@
 
       <!-- Retrieve Successfull -->
       <div v-else>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <MangaCard
-            v-for="(items, index) in mangas"
-            :key="index"
-            :manga="items"/>
+        <div class="mb-5">
+          <h2 class="text-white font-poppins font-semibold text-l mb-5">Series</h2>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <MangaCard
+              v-for="(items, index) in series.slice(0, 6)"
+              :key="index"
+              :manga="items"/>
+          </div>
         </div>
-      </div>
-      <div class="flex flex-col justify-center items-center mt-6">
-        <div class="flex flex-row mx-auto px-2 font-poppins font-semibold text-white">
-          <button
-            @click="previousPage"
-            :disabled="page <= 1"
-            class="rounded-l-md px-3 transition duration-300 ease-in-out focus:outline-none"
-            :class="[page <= 1 ? 'bg-gray-700' : 'bg-teriary hover:bg-purple']">
-            <Icon name="arrow-left" />
-          </button>
-          <div class="text-center bg-main w-10 py-2 px-3 "> {{ page }} </div>
-          <button
-            @click="nextPage"
-            class="bg-teriary rounded-r-md px-3 transition duration-300 ease-in-out hover:bg-purple focus:outline-none">
-            <Icon name="arrow-right" />
-          </button>
+        <div>
+          <h2 class="text-white font-poppins font-semibold text-l mb-5">Doujin</h2>
+          <div class="grid grid-cols-2 lg:grid-cols-2 gap-4">
+            <MangaCard
+              v-for="(items, index) in doujin.slice(0, 6)"
+              :key="index"
+              :manga="items"/>
+          </div>
         </div>
       </div>
     </div>
@@ -51,6 +46,10 @@
     components: {
       LoadingCard,
       MangaCard,
+    },
+    computed: {
+      series() { return this.mangas.filter(manga => manga.data.series) },
+      doujin() { return this.mangas.filter(manga => !manga.data.series) },
     },
     data() {
       return {
@@ -78,9 +77,9 @@
         let page = this.page;
         this.loading = true;
 
-        Service.getMangas(page)
+        Service.getMangas()
           .then((response) => {
-            this.mangas = response.data.manga_list;
+            this.mangas = response.data;
           })
           .catch((error) => {
             console.log("sorry there was an error " + error);

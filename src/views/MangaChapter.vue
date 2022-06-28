@@ -13,7 +13,7 @@
       <div v-else>
         <h1 v-html="chapterTitle" class="mb-5 text-white font-poppins font-semibold text-xl capitalize"></h1>
         <div v-for="(items, index) in chapterImageList" :key="index">
-          <img :src="items.chapter_image_link">
+          <img :src="'/img/' + uri + '/' + this.$route.params.chapter + '/' + items">
         </div>
       </div>
     </div>
@@ -25,19 +25,17 @@
   import Service from "@/services/services.js";
 
   export default {
-    props: {
-      chapter: Object,
-    },
     components: {
       LoadingCard,
     },
     computed: {
-      chapterTitle() { return this.chapter.replace(/\W/g, " ") },
-      chapterImageList() { return this.chapterImage },
+      uri() { return this.mangaDetails.data.titleSafe },
+      chapterTitle() { return this.mangaDetails.data.chapter[this.$route.params.chapter-1].title },
+      chapterImageList() { return this.mangaDetails.data.assets },
     },
     data() {
       return {
-        chapterImage: [],
+        mangaDetails: [],
         page: 1,
         loading: true,
         error: false,
@@ -52,11 +50,12 @@
     },
     methods: {
       async fetchData() {
-        let chapter = this.chapter;
+        let id = this.$route.params.id;
+        let chapter = this.$route.params.chapter;
 
-        Service.getMangaChapter(chapter)
+        Service.getMangaChapter(id, chapter)
           .then((response) => {
-            this.chapterImage = response.data.chapter_image;
+            this.mangaDetails = response.data;
           })
           .catch((error) => {
             console.log("sorry there was an error " + error);
