@@ -1,47 +1,29 @@
-<h1 align="center">MangaVUE</h1>
-<h4 align="center">Is it MangaKU ? or is it MangaMU ? No! it is MangaVUE</h4>
+# La Petite FE
 
-<p align="center">
-  <img src="https://github.com/kurnyaannn/mangavue/blob/master/public/mangavue.png?raw=true">
-</p>
+A substitute for [La Petite Manga](https://manga.lapetite.moe)'s old frontend (which actually doesn't offer massive differences).
 
-## Details
-> "This Project is for educational purposes only, so I'm begging you TO NOT use this project as commercial use whatsoever." <br>
+## Build Setup
+``` bash
+# install dependencies
+npm i
 
-MangaVUE is an Online Manga Reading App, built using VueJS and TailwindCSS. The data used for this project is from <a href="https://komiku.id">Komiku.id</a>, with the help of API from <a href="https://github.com/febryardiansyah/manga-api">manga-api</a> by Febry Adriansyah.
+# vite / serve with hot reload at localhost:42069
+npm run dev
 
-This project will always work as long as the API doesn't change. And also if you find error message that says "...sorry we're not able to retrieve blah blah blah..." that means the API request is failed or the main server is down or whatnot.
+# vite build / build for production
+npm run build
 
-You can see the live demo here : https://mangavue.vercel.app
+# vite preview
+npm run serve
 
-## Installation
-* Clone this repository using `git clone` command (or just download the `zip` version).
-* Navigate to Project Directory. Project setup using `npm`.
-  ```bash
-  $ npm install
-  ```
-* Compiles and hot-reloads for `development`
-  ```bash
-  $ npm run serve
-  ```
-* Compiles and minifies for `production`
-  ```bash
-  $ npm run build
-  ```
-* Lints and fixes files
-  ```bash
-  $ npm run lint
-  ```
-
-## Todos
-- [x] Responsive
-- [ ] Make Manga Chapter Image Zommable on Desktop screen
-- [ ] Adding more animation
-- [ ] Navigate Between Manga Chapter
-- [ ] Error Handling
+# linting 
+npm run lint
+```
 
 ## License
-As you can see MangaVUE is under MIT License
+GNU GPL v3.0 or later
 
-## About the Author
-<a href="https://kurnyaannn.github.io">Yayang Kurnia</a>.
+## Copyright Notice
+La Petite FE is derived from [kurnyaannn](https://github.com/kurnyaannn)'s [MangaVUE](https://github.com/kurnyaannn/mangavue).
+
+See [COPYRIGHT.md](COPYRIGHT.md)
