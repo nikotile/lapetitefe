@@ -27,7 +27,7 @@
 			</div>
 		</div>
 		<div class="animate-pulse mx-auto flex justify-center bg-teriary rounded-md text-white font-poppins text-lg px-3 py-2 mt-3">
-			Loading Data...
+			Memuat Data...
 		</div>
 	</div>
 </template>

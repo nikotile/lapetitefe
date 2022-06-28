@@ -10,7 +10,7 @@
 			    <path fill-rule="evenodd" clip-rule="evenodd" d="M150 288C226.215 288 288 226.215 288 150C288 73.7847 226.215 12 150 12C73.7847 12 12 73.7847 12 150C12 226.215 73.7847 288 150 288ZM150 300C232.843 300 300 232.843 300 150C300 67.1573 232.843 0 150 0C67.1573 0 0 67.1573 0 150C0 232.843 67.1573 300 150 300Z" fill="#2bebc8" />
 			  </svg>
 			</div>
-      <span class="hidden md:block font-cinzel text-3xl font-bold text-white">MangaVUE</span>
+      <span class="hidden md:block font-cinzel text-3xl font-bold text-white">La Petite Manga</span>
     </div>
     <router-view class="mb-24 mt-2 md:mb-2 md:mt-12" />
 	</div>
