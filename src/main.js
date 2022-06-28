@@ -1,12 +1,17 @@
-import Vue from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import { createApp } from "vue"
+import App from "./App.vue"
+import router from "./router"
+import VueCookies from 'vue3-cookies'
 import "./assets/css/main.css";
 import upperFirst from "lodash/upperFirst";
 import camelCase from "lodash/camelCase";
 import "nprogress/nprogress.css";
 import ErrorMsg from "./components/ErrorMsg.vue";
+
+const app = createApp(App)
+  .use(router)
+  .use(VueCookies)
+  .component("ErrorMsg", ErrorMsg);
 
 const requireComponent = require.context(
   "./components",
@@ -19,15 +24,7 @@ requireComponent.keys().forEach((fileName) => {
   const componentName = upperFirst(
     camelCase(fileName.replace(/^\.\/(.*)\.\w+$/, "$1"))
   );
-
-  Vue.component(componentName, componentConfig.default || componentConfig);
+  app.component(componentName, componentConfig.default || componentConfig);
 });
 
-Vue.component("ErrorMsg", ErrorMsg);
-Vue.config.productionTip = false;
-
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount("#app");
+app.mount("#app")
