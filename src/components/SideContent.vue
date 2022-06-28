@@ -8,6 +8,7 @@
       </div>
       <input
         class="bg-teriary font-poppins text-white w-full h-10 pl-4 pr-12 rounded-sm text-sm focus:outline-none focus:ring-2 focus:ring-green transition ease-in-out duration-300"
+        autocomplete="off"
         name="search"
         v-model.trim="query"
         @keyup="searchManga"
@@ -35,11 +36,11 @@
             :class="[mangas ? 'hidden' : 'block']">
             Searching result for '{{ query }}'
           </li>
-          <li v-for="(items, index) in mangas" :key="index">
+          <li v-if="focus" v-for="(items, index) in mangas" :key="index">
             <router-link
-              :to="{ name: 'manga-details', params: { manga: items.endpoint } }"
+              :to="{ name: 'manga-details', params: { id: items.id } }"
               class="flex w-full py-1 px-2 rounded-sm hover:bg-purple">
-              {{ items.title }}
+              {{ items.data.titleJP }}
             </router-link>
           </li>
         </ul>
@@ -62,12 +63,9 @@
         </div>
       </div>
       <div class="py-4 mb-3">
-        <h1 class="font-poppins font-semibold text-white text-xl px-3 mb-3">
-          Author
-        </h1>
         <div class="flex flex-row justify-between text-white py-2 px-3">
           <a
-            v-for="detail in authorDetails"
+            v-for="detail in links"
             :key="detail"
             :href="detail.url"
             target="_blank"
@@ -76,90 +74,28 @@
           </a>
         </div>
       </div>
-      <div class="rounded-md py-4 mb-3 border border-gray-400">
-        <h1 class="font-poppins font-semibold text-white text-xl px-3 mb-3">
-          Credits
-        </h1>
-        <div class="flex flex-row justify-between text-white py-2 px-3">
-          <div
-            v-for="credit in credits"
-            :key="credit"
-            class="flex flex-col justify-center items-center">
-            <a
-              :href="credit.url"
-              target="_blank"
-              class="flex flex-col items-center justify-center w-8 h-8 rounded-full bg-teriary transition duration-300 ease-in-out transform hover:-translate-y-1 hover:bg-purple">
-              <Icon :name="credit.icon" />
-            </a>
-            <span v-html="credit.name" class="font-ptserif font-bold"></span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Error -->
-      <ErrorMsg v-if="error" />
-
-      <!-- Loading -->
-      <div v-else class="">
-        <div v-if="loading">
-          <LoadingGenre />
-        </div>
-
-        <!-- Retrieve Successfull -->
-        <div v-else class="bg-secondary rounded-md py-4">
-          <h1 class="font-poppins font-semibold text-white text-xl px-3 mb-3">
-            Genres
-          </h1>
-          <div class="grid grid-cols-6 gap-1 font-ptserif text-white py-2 px-3">
-            <router-link
-              v-for="(items, index) in genres"
-              :key="index"
-              :genre="items"
-              :to="{ name: 'manga-genre', params: { genre: items.endpoint } }"
-              class="col-span-3 rounded-sm px-1 transition duration-300 ease-in-out hover:bg-purple">
-              <span v-html="items.genre_name" class=""></span>
-            </router-link>
-          </div>
-        </div>
-      </div>
     </div>
   </aside>
 </template>
 
 <script>
   import Service from "@/services/services.js";
-
   export default {
     data() {
       return {
         mangas: [],
         genres: [],
-        authorDetails: [
-          { icon: "globe", url: "https://kurnyaannn.github.io" },
-          { icon: "linkedin", url: "https://linkedin.com/in/kurnyaannn" },
-          { icon: "github", url: "https://github.com/kurnyaannn" },
-          { icon: "facebook", url: "https://facebook.com/y21kurnia" },
-          { icon: "instagram", url: "https://instagram.com/kurnyaannn" },
-        ],
-        credits: [
-          {
-            name: "API",
-            icon: "share-2",
-            url: "https://github.com/febryardiansyah/manga-api",
-          },
-          { name: "Manga", icon: "book", url: "https://komiku.id/" },
-          { name: "Icons", icon: "feather", url: "https://feathericons.com/" },
-          {
-            name: "Design",
-            icon: "layout",
-            url: "https://dribbble.com/shots/15298655-Vanti",
-          },
+        links: [
+          { icon: "rss", url: "/api/rss" },
+          { icon: "globe", url: "https://lapetite.moe" },
+          { icon: "edit", url: "https://papan.lapetite.moe" },
+          { icon: "twitter", url: "https://twitter.com/lapetitemoe" },
         ],
         projectDetails: [
           {
-            name: "MangaVUE",
+            name: "La Petite Manga",
             icon: "github",
-            url: "https://github.com/kurnyaannn/mangavue",
+            url: "https://github.com/nikotile",
           },
         ],
         query: "",
@@ -177,29 +113,18 @@
     },
     methods: {
       searchManga() {
-        let query = this.query;
-
+        let query = this.query.replace(/\s/g, '').toLowerCase();
         Service.getMangaSearch(query)
           .then((response) => {
-            this.mangas = response.data.manga_list;
+            this.mangas = response.data;
           })
           .catch((error) => {
-            console.log("sorry there was an error " + error);
             this.error = true;
           });
       },
     },
     mounted() {
       this.searchManga();
-      Service.getGenreLists()
-        .then((response) => {
-          this.genres = response.data.list_genre;
-        })
-        .catch((error) => {
-          console.log("sorry there was an error " + error);
-          this.error = true;
-        })
-        .finally(() => (this.loading = false));
     },
     created() {
       
