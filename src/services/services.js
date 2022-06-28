@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: "https://mangamint.kaedenoki.net/api/",
+  baseURL: "http://localhost:42069/api/",
   withCredentials: false,
   headers: {
     Accept: "application/json",
@@ -11,28 +11,19 @@ const apiClient = axios.create({
 });
 
 export default {
-  getMangas(page) {
-    return apiClient.get(`manga/page/${page}`);
+  getMangas() {
+    return apiClient.get('entries');
   },
-  getGenreLists() {
-    return apiClient.get("genres");
+  getTags() {
+    return apiClient.get('tags');
   },
-  getMangaPopular(popularity, page) {
-    return apiClient.get(`manga/${popularity}/${page}`);
+  getMangaDetails(id) {
+    return apiClient.get(`entry/${id}`);
   },
-  getMangaRecommended() {
-    return apiClient.get("recommended");
-  },
-  getMangaGenre(genre, page) {
-    return apiClient.get(`genres/${genre}/${page}`);
-  },
-  getMangaDetails(manga) {
-    return apiClient.get(`manga/detail/${manga}`);
-  },
-  getMangaChapter(chapter) {
-    return apiClient.get(`chapter/${chapter}`);
+  getMangaChapter(id, chapter) {
+    return apiClient.get(`entry/${id}/${chapter}`);
   },
   getMangaSearch(query) {
-    return apiClient.get(`search/${query}`);
+    return apiClient.get(`search?title=${query}`);
   }
 };
