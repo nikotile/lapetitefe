@@ -1,6 +1,6 @@
 # La Petite FE
 
-A substitute for [La Petite Manga](https://manga.lapetite.moe)'s old frontend (which actually doesn't offer massive differences).
+A substitute for [La Petite Manga](https://manga.lapetite.moe)'s old frontend. While actually doesn't offer massive differences, this one still retains the all-time fan favorite feature: **tag filtering**.
 
 ## Build Setup
 ``` bash
@@ -20,10 +20,12 @@ npm run serve
 npm run lint
 ```
 
+## To-do
+
+- [x] Make it work
+- [ ] Make it less idiotic
+
 ## License
 GNU GPL v3.0 or later
 
-## Copyright Notice
-La Petite FE is derived from [kurnyaannn](https://github.com/kurnyaannn)'s [MangaVUE](https://github.com/kurnyaannn/mangavue).
-
-See [COPYRIGHT.md](COPYRIGHT.md)
+La Petite FE is derived from [kurnyaannn](https://github.com/kurnyaannn)'s [MangaVUE](https://github.com/kurnyaannn/mangavue). For complete copyright notices, see [COPYRIGHT.md](COPYRIGHT.md)
