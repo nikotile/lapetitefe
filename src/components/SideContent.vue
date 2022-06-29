@@ -78,6 +78,11 @@
           </a>
         </div>
       </div>
+      <div class="flex flex-row justify-center text-white py-2 px-3">
+        <router-link :to="{ name: 'about' }" @click="clickResult">
+          <a class="underline hover:text-green">Informasi</a>
+        </router-link>
+      </div>
     </div>
   </aside>
 </template>

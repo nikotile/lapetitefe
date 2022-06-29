@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import About from "../views/About.vue";
 import MangaDetails from "../views/MangaDetails.vue";
 import MangaChapter from "../views/MangaChapter.vue";
 import MangaLists from "../views/MangaLists.vue";
@@ -17,6 +18,11 @@ const routes = [
     path: "/catalog",
     name: "manga-catalog",
     component: MangaCatalog,
+  },
+  {
+    path: "/about",
+    name: "about",
+    component: About,
   },
   {
     path: "/h/:id",
