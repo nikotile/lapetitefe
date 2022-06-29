@@ -19,7 +19,10 @@
           <div v-for="entry in filteredEntries" class="flex flex-col md:flex-row h-full max-h-50 bg-secondary">
             <div class="p-3 md:pt-2 md:px-3">
               <router-link
-                :to="{ name: 'manga-details', params: { id: entry.id } }" exact
+                :to=" entry.data.series === true
+                  ? { name: 'series-details', params: { id: entry.id } }
+                  : { name: 'manga-details', params: { id: entry.id } }
+                "
               class="w-full">
                 <h1 v-html="entry.data.titleJP" class="font-ptserif text-md mb-1 text-white hover:text-green shadow-md rounded-md transform transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"></h1>
               </router-link>
