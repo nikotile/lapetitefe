@@ -6,12 +6,12 @@
         class="h-full w-full"
         :class="[isOpen ? 'hidden' : 'block']" />
       <SideContent
-        class="w-full lg:w-5/12 lg:block"
+        class="w-full xl:w-5/12 xl:block"
         :class="[isOpen ? 'block' : 'hidden']" />
     </div>
     <button
       @click="toggleMenu"
-      class="z-50 fixed right-0 top-0 text-white mt-5 mr-5 p-2 bg-teriary border-2 border-white rounded-md cursor-pointer transition ease-in-out duration-300 focus:outline-none hover:bg-main lg:hidden">
+      class="z-50 fixed right-0 top-0 text-white mt-5 mr-5 p-2 bg-teriary border-2 border-white rounded-md cursor-pointer transition ease-in-out duration-300 focus:outline-none hover:bg-main xl:hidden">
       <Icon
         :name="[isOpen ? 'x' : 'menu']"/>
     </button>

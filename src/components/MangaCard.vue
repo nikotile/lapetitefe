@@ -14,7 +14,6 @@
       <div class="absolute items-baseline l-0 m-2">
         <div
           class="font-nunito font-semibold text-xs bg-gray-300 rounded-full px-2">
-          <p>new</p>
         </div>
       </div>
       <div class="p-3 md:pt-2 md:px-3">
