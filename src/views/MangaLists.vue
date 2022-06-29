@@ -23,7 +23,7 @@
               :manga="items"/>
           </div>
         </div>
-        <div>
+        <div class="mb-5">
           <h2 class="text-white font-poppins font-semibold text-l mb-5">Doujin</h2>
           <div class="grid grid-cols-2 lg:grid-cols-2 gap-4">
             <MangaCard
@@ -31,6 +31,11 @@
               :key="index"
               :manga="items"/>
           </div>
+        </div>
+        <div class="flex flex-row justify-center">
+          <router-link :to="{ name: 'manga-catalog' }">
+            <button class="button py-1 px-2 text-white rounded shadow-md rounded-md transform transition duration-300 ease-in-out hover:translate-x-1 hover:shadow-lg bg-gray-600 hover:text-green">Katalog ➙</button>
+          </router-link>
         </div>
       </div>
     </div>
