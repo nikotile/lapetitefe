@@ -120,7 +120,16 @@
 
         Service.getMangaDetails(manga)
           .then((response) => {
-            this.mangaDetails = response.data;
+            const isSeries = response.data.data.series;
+            if (isSeries) {
+              this.$route.path.startsWith('/k/')
+                ? this.mangaDetails = response.data
+                : this.$router.push('/404');
+            } else if (!isSeries) {
+              this.$route.path.startsWith('/k/')
+                ? this.$router.push('/404') 
+                : this.mangaDetails = response.data
+            }
           })
           .catch((error) => {
             console.log("sorry there was an error " + error);

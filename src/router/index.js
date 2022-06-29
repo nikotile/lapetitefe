@@ -4,6 +4,7 @@ import MangaChapter from "../views/MangaChapter.vue";
 import MangaLists from "../views/MangaLists.vue";
 import MangaCatalog from "../views/MangaCatalog.vue";
 import MangaSearch from "../views/MangaSearch.vue";
+import ErrorMsg from "../components/ErrorMsg.vue";
 
 const routes = [
   {
@@ -40,6 +41,11 @@ const routes = [
     name: "manga-search",
     component: MangaSearch,
     props: true,
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: '404',
+    component: ErrorMsg,
   },
 ];
 
