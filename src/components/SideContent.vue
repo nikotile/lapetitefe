@@ -4,7 +4,7 @@
       <div
         class="flex justify-start items-center lg:hidden"
         :class="[query ? 'block' : 'hidden']">
-        <h1 class="absolute text-white font-poppins font-semibold top-0 mt-7"> > Close the menu to see the result</h1>  
+        <h1 class="absolute text-white font-poppins font-semibold top-0 mt-7"> > Search results</h1>  
       </div>
       <input
         class="bg-teriary font-poppins text-white w-full h-10 pl-4 pr-12 rounded-sm text-sm focus:outline-none focus:ring-2 focus:ring-green transition ease-in-out duration-300"
@@ -29,16 +29,19 @@
       </button>
       <div
         class="absolute px-3 py-3 bg-teriary w-full text-white text-sm font-ptserif z-50 max-h-96 overflow-y-auto rounded-b-sm"
-        :class="[query && focus ? 'opacity-100' : 'opacity-0']">
+        :class="[query ? '' : 'hidden']">
         <ul>
           <li
             class="py-1 px-2 text-center"
             :class="[mangas ? 'hidden' : 'block']">
             Searching result for '{{ query }}'
           </li>
-          <li v-if="focus" v-for="(items, index) in mangas" :key="index">
+          <li v-if="query" v-for="(items, index) in mangas" :key="index" @click="clickResult">
             <router-link
-              :to="{ name: 'manga-details', params: { id: items.id } }"
+              :to=" items.data.series
+                ? { name: 'series-details', params: { id: items.id } }
+                : { name: 'manga-details', params: { id: items.id } }
+              "
               class="flex w-full py-1 px-2 rounded-sm hover:bg-purple">
               {{ items.data.titleJP }}
             </router-link>
@@ -48,16 +51,17 @@
     </div>
     <div class="">
       <div class="mt-12 pb-4">
-        <div class="flex justify-center items-center text-center text-white">
+        <div class="flex flex-row justify-between text-center text-white">
           <a
-            v-for="project in projectDetails"
-            :key="project"
-            :href="project.url"
+            v-for="button in buttonBig"
+            :key="button"
+            :href="button.url"
+            target="_blank"
             class="flex flex-row w-full bg-teriary justify-center items-center px-2 py-2 rounded-md font-cinzel font-bold transition ease-in-out duration-300 transform hover:-translate-y-1 hover:bg-purple">
-            <Icon :name="project.icon"/>
+            <Icon :name="button.icon"/>
             <span
-              v-html="project.name"
-              class="ml-3 font-cinzel font-bold text-xl"
+              v-html="button.name"
+              class="ml-3 font-cinzel font-bold text-md"
             ></span>
           </a>
         </div>
@@ -65,12 +69,12 @@
       <div class="py-4 mb-3">
         <div class="flex flex-row justify-between text-white py-2 px-3">
           <a
-            v-for="detail in links"
-            :key="detail"
-            :href="detail.url"
+            v-for="button in buttonSmall"
+            :key="button"
+            :href="button.url"
             target="_blank"
             class=" flex flex-col items-center justify-center w-8 h-8 bg-teriary rounded-full transition duration-300 ease-in-out transform hover:-translate-y-1 hover:bg-purple">
-            <Icon :name="detail.icon" />
+            <Icon :name="button.icon" />
           </a>
         </div>
       </div>
@@ -85,17 +89,24 @@
       return {
         mangas: [],
         genres: [],
-        links: [
+        buttonSmall: [
           { icon: "rss", url: "/api/rss" },
           { icon: "globe", url: "https://lapetite.moe" },
           { icon: "edit", url: "https://papan.lapetite.moe" },
+          { icon: "github", url: "https://github.com/nikotile/lapetitefe" },
           { icon: "twitter", url: "https://twitter.com/lapetitemoe" },
+          { icon: "message-circle", url: "https://discord.gg/K9UWEgsCCY" },
         ],
-        projectDetails: [
+        buttonBig: [
           {
-            name: "La Petite Manga",
-            icon: "github",
-            url: "https://github.com/nikotile",
+            name: "Trakteer",
+            icon: "heart",
+            url: "https://trakteer.id/lapetitemanga",
+          },
+          {
+            name: "Feedback",
+            icon: "edit",
+            url: "https://papan.lapetite.moe/ext4/thread/3.html",
           },
         ],
         query: "",
@@ -122,6 +133,10 @@
             this.error = true;
           });
       },
+      clickResult() {
+        this.$emit('closeMenu');
+        this.query = "";
+      }
     },
     mounted() {
       this.searchManga();

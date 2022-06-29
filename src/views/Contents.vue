@@ -6,6 +6,7 @@
         class="h-full w-full"
         :class="[isOpen ? 'hidden' : 'block']" />
       <SideContent
+        @closeMenu="closeMenu"
         class="w-full xl:w-5/12 xl:block"
         :class="[isOpen ? 'block' : 'hidden']" />
     </div>
@@ -40,6 +41,9 @@
       toggleMenu() {
         this.isOpen = this.isOpen ? false : true;
         this.iconName = this.isOpen ? false : true;
+      },
+      closeMenu() {
+        this.isOpen = false;
       },
     },
   };
