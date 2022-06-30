@@ -2,6 +2,8 @@
 
 A substitute for [La Petite Manga](https://manga.lapetite.moe)'s old frontend. While actually doesn't offer massive differences, this one still retains the all-time fan favorite feature: **tag filtering**.
 
+Note that me can't into code and this is still on active development, so you might find problems.
+
 ## Build Setup
 
 This will use the public development endpoints (e.g. https://api.lapetite.moe/dev/manga/api/entries), which will be proxied in `vite.config.js`.
