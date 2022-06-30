@@ -15,7 +15,7 @@
 
       <!-- Retrieve Successfull -->
       <div v-else>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-5">
           <div v-for="entry in filteredEntries" class="flex flex-col md:flex-row h-full max-h-50 bg-secondary">
             <div class="p-3 md:pt-2 md:px-3">
               <router-link
@@ -26,8 +26,8 @@
               class="w-full">
                 <h1 v-html="entry.data.titleJP" class="font-ptserif text-md mb-1 text-white hover:text-yellow shadow-md rounded-md transform transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"></h1>
               </router-link>
-        <a class="m-1" v-for="tag in entry.data.tags">
-          <button @click="filterEntries(tag)" class="button py-1 px-2 text-xs rounded shadow-md rounded-md transform transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg" :class=" filteredTags.includes(tag) ? 'bg-yellow text-black' : 'bg-gray-600 text-white' ">
+        <a v-for="tag in entry.data.tags">
+          <button @click="filterEntries(tag)" class="button py-1 px-2 m-1 text-xs rounded shadow-md rounded-md transform transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg" :class=" filteredTags.includes(tag) ? 'bg-yellow text-black' : 'bg-gray-600 text-white' ">
             {{ tag }}
           </button>
         </a>
