@@ -7,7 +7,7 @@
         <h1 class="absolute text-white font-poppins font-semibold top-0 mt-7"> > Search results</h1>  
       </div>
       <input
-        class="bg-teriary font-poppins text-white w-full h-10 pl-4 pr-12 rounded-sm text-sm focus:outline-none focus:ring-2 focus:ring-green transition ease-in-out duration-300"
+        class="bg-teriary font-poppins text-white w-full h-10 pl-4 pr-12 rounded-sm text-sm focus:outline-none focus:ring-2 focus:ring-yellow transition ease-in-out duration-300"
         autocomplete="off"
         name="search"
         v-model.trim="query"
@@ -80,7 +80,7 @@
       </div>
       <div class="flex flex-row justify-center text-white py-2 px-3">
         <router-link :to="{ name: 'about' }" @click="clickResult">
-          <a class="underline hover:text-green">Informasi</a>
+          <a class="underline hover:text-yellow">Informasi</a>
         </router-link>
       </div>
     </div>

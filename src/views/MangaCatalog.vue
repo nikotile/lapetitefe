@@ -24,10 +24,10 @@
                   : { name: 'manga-details', params: { id: entry.id } }
                 "
               class="w-full">
-                <h1 v-html="entry.data.titleJP" class="font-ptserif text-md mb-1 text-white hover:text-green shadow-md rounded-md transform transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"></h1>
+                <h1 v-html="entry.data.titleJP" class="font-ptserif text-md mb-1 text-white hover:text-yellow shadow-md rounded-md transform transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"></h1>
               </router-link>
         <a class="m-1" v-for="tag in entry.data.tags">
-          <button @click="filterEntries(tag)" class="button py-1 px-2 text-xs rounded shadow-md rounded-md transform transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg" :class=" filteredTags.includes(tag) ? 'bg-yellow-400 text-black' : 'bg-gray-600 text-white' ">
+          <button @click="filterEntries(tag)" class="button py-1 px-2 text-xs rounded shadow-md rounded-md transform transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg" :class=" filteredTags.includes(tag) ? 'bg-yellow text-black' : 'bg-gray-600 text-white' ">
             {{ tag }}
           </button>
         </a>

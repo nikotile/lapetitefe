@@ -6,7 +6,7 @@
     "
     class="w-full">
     <div
-      class="flex flex-col md:flex-row h-full bg-secondary text-white hover:text-green shadow-md rounded-md transform transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg md:max-h-20 lg:max-h-20">
+      class="flex flex-col md:flex-row h-full bg-secondary text-white hover:text-yellow shadow-md rounded-md transform transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg md:max-h-20 lg:max-h-20">
       <img
         :src="thumb"
         :alt="title"
