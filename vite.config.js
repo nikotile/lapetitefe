@@ -19,14 +19,14 @@ export default defineConfig({
     port: 42069,
     proxy: {
       '/img': {
-        target: 'http://localhost:8080',
+        target: 'https://api.lapetite.moe/dev/manga/',
         changeOrigin: true,
         pathRewrite: {
           '^/img': ''
         }
       },
       '/api': {
-        target: 'http://localhost:8080',
+        target: 'https://api.lapetite.moe/dev/manga/',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
