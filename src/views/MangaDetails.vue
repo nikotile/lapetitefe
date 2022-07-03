@@ -15,11 +15,15 @@
         <div class="flex flex-col lg:grid lg:grid-cols-12 lg:gap-4">
           <div class="md:col-span-12 lg:col-start-1 lg:col-span-3">
             <div class="flex flex-col md:flex-row lg:flex-col font-ptserif">
-              <img v-if="type" :src="thumb" :alt="title" class="w-3/5 mb-1 md:pr-4 lg:pr-0" />
+              <img @click="cycleThumb" v-if="type" :src="thumb[currentThumb]" :alt="title" class="w-3/5 mb-1 md:pr-4 lg:pr-0 cursor-pointer" />
               <div class="flex flex-col text-white w-full">
                 <div class="my-2 md:mt-0 lg:mt-2">
                   <h1 class="-mb-1 text-xs font-poppins font-semibold">Author</h1>
                   <span v-html="author"></span>
+                </div>
+                <div class="my-2">
+                  <h1 class="-mb-1 text-xs font-poppins font-semibold">Asal</h1>
+                  <span v-html="parody"></span>
                 </div>
                 <div class="my-2">
                   <h1 class="-mb-1 text-xs font-poppins font-semibold">Rating</h1>
@@ -40,15 +44,15 @@
           <div class="my-2 md:my-0 lg:col-start-4 lg:col-span-12 text-white font-ptserif">
             <div class="my-3">
               <div v-if="type" class="flex text-xs font-poppins font-semibold">
-                <h1>Synopsis</h1>
+                <h1>Deskripsi</h1>
                 <div @click="toggle" class="ml-1 cursor-pointer">
-                    <span v-if="showSynopsis" class="px-1 font-normal">－</span>
+                    <span v-if="showDescription" class="px-1 font-normal">－</span>
                     <span v-else class="px-1 font-normal">＋</span>
                 </div>
               </div>
               <p 
                 v-html="description" 
-                :class="showSynopsis ? 'block' : 'hidden'"></p>
+                :class="showDescription ? 'block' : 'hidden'"></p>
             </div>
 
             <div v-if="chapter">
@@ -83,15 +87,15 @@
   export default {
     props: ["manga"],
     computed: {
-      thumb() { return this.mangaDetails.data.thumb[0] },
+      thumb() { return this.mangaDetails.data.thumb },
       title() { return this.mangaDetails.data.titleJP },
       uri() { return this.mangaDetails.data.titleSafe },
       author() { return this.mangaDetails.data.author },
       status() { return this.mangaDetails.data.rating },
+      parody() { return this.mangaDetails.data.parody },
       description() { return this.mangaDetails.data.description },
       type() { return this.mangaDetails.data.series },
       genre() { return this.mangaDetails.data.tags },
-      synopsis() { return this.mangaDetails.synopsis },
       chapter() { return this.mangaDetails.data.chapter },
       assets() { return this.mangaDetails.data.assets },
     },
@@ -100,7 +104,8 @@
         mangaDetails: [],
         loading: true,
         error: false,
-        showSynopsis: false,
+        showDescription: false,
+        currentThumb: 0,
       };
     },
     watch: {
@@ -112,7 +117,12 @@
     },
     methods: {
       toggle() {
-        this.showSynopsis = this.showSynopsis ? false : true;
+        this.showDescription = this.showDescription ? false : true;
+      },
+      cycleThumb() {
+        this.currentThumb === this.thumb.length - 1
+          ? this.currentThumb = 0
+          : this.currentThumb += 1;
       },
       async fetchData() {
         let manga = this.$route.params.id;
