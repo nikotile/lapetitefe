@@ -42,6 +42,8 @@ jobs:
           port: ${{ secrets.port }}
           passphrase: ${{ secrets.passphrase }}
           script: |
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
             cd ~/git/lapetitefe
             git stash
             git pull --force origin main
