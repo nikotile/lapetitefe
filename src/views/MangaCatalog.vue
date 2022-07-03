@@ -45,9 +45,6 @@
   import Service from "@/services/services.js";
 
   export default {
-    props: {
-
-    },
     data() {
       return {
         entries: [],

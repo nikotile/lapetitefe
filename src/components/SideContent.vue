@@ -4,7 +4,7 @@
       <div
         class="flex justify-start items-center lg:hidden"
         :class="[query ? 'block' : 'hidden']">
-        <h1 class="absolute text-white font-poppins font-semibold top-0 mt-7"> > Search results</h1>  
+        <h1 class="absolute text-white font-poppins font-semibold top-0 mt-7"> > Hasil pencarian</h1>  
       </div>
       <input
         class="bg-teriary font-poppins text-white w-full h-10 pl-4 pr-12 rounded-sm text-sm focus:outline-none focus:ring-2 focus:ring-yellow transition ease-in-out duration-300"
@@ -32,9 +32,10 @@
         :class="[query ? '' : 'hidden']">
         <ul>
           <li
-            class="py-1 px-2 text-center"
-            :class="[mangas ? 'hidden' : 'block']">
-            Searching result for '{{ query }}'
+            v-if="loading"
+            class="py-1 px-2 text-center">
+            <span>Mencari</span>
+            <span class="mx-1">'{{ query }}'</span>
           </li>
           <li v-if="query" v-for="(items, index) in mangas" :key="index" @click="clickResult">
             <router-link
@@ -93,7 +94,6 @@
     data() {
       return {
         mangas: [],
-        genres: [],
         buttonSmall: [
           { icon: "rss", url: "/api/rss" },
           { icon: "globe", url: "https://lapetite.moe" },
@@ -116,7 +116,7 @@
         ],
         query: "",
         focus: false,
-        loading: true,
+        loading: false,
         error: false,
       };
     },
@@ -129,6 +129,7 @@
     },
     methods: {
       searchManga() {
+        this.loading = true;
         let query = this.query.replace(/\s/g, '').toLowerCase();
         Service.getMangaSearch(query)
           .then((response) => {
@@ -136,18 +137,15 @@
           })
           .catch((error) => {
             this.error = true;
+          })
+          .finally(() => {
+            this.loading = false;
           });
       },
       clickResult() {
         this.$emit('closeMenu');
         this.query = "";
       }
-    },
-    mounted() {
-      this.searchManga();
-    },
-    created() {
-      
     },
   };
 </script>

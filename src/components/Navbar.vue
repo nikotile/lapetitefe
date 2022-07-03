@@ -1,5 +1,4 @@
 <template>
-  <!-- <nav class="bg-main px-6 flex flex-col justify-center h-screen sticky top-0"> -->
   <nav class="bg-main md:px-3 md:flex md:flex-col md:flex-none md:justify-center md:items-center md:h-screen md:sticky md:top-0">
     <div>
       <ul>
@@ -14,7 +13,8 @@
           </router-link>
           <router-link
             :to="{ name: 'manga-catalog' }" exact
-            class="flex flex-col w-12 h-12 text-white justify-center items-center transition duration-300 ease-id-out rounded-md hover:bg-purple hover:text-white [routeName == 'manga-catalog' ? 'bg-purple' : '']">
+            class="flex flex-col w-12 h-12 text-white justify-center items-center transition duration-300 ease-id-out rounded-md hover:bg-purple hover:text-white"
+            :class="[routeName == 'manga-catalog' ? 'bg-purple' : '']">
             <span>
               <Icon name="book-open" class="fill-current h-5 w-5 transition ease-in-out duration-200" />
             </span>
