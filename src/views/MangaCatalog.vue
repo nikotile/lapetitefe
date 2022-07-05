@@ -41,7 +41,6 @@
 </template>
 
 <script>
-  import MangaAltCard from "@/components/MangaAltCard.vue";
   import Service from "@/services/services.js";
 
   export default {
@@ -55,19 +54,12 @@
       };
     },
     watch: {
-      page: {
-        handler: 'fetchData',
-        deep: true,
-        immediate: true
-      },
       entries() {
         this.filterEntries(undefined)
       }
     },
     methods: {
       async fetchData() {
-        let popularity = this.popularity;
-        let page = this.page;
         this.loading = true;
 
         Service.getMangas()

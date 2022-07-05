@@ -4,7 +4,6 @@ import MangaDetails from "../views/MangaDetails.vue";
 import MangaChapter from "../views/MangaChapter.vue";
 import MangaLists from "../views/MangaLists.vue";
 import MangaCatalog from "../views/MangaCatalog.vue";
-import MangaSearch from "../views/MangaSearch.vue";
 import ErrorMsg from "../components/ErrorMsg.vue";
 
 const routes = [
@@ -40,12 +39,6 @@ const routes = [
     path: "/k/:id/:chapter",
     name: "series-chapter",
     component: MangaChapter,
-    props: true,
-  },
-  {
-    path: "/search/:query",
-    name: "manga-search",
-    component: MangaSearch,
     props: true,
   },
   {

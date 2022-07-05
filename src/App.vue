@@ -5,11 +5,11 @@
 </template>
 
 <script>
-	import Contents from "@/views/Contents.vue";
+  import Contents from "@/views/Contents.vue";
 
-	export default {
-	  components: {
-	    Contents,
-	  },
-	};
+  export default {
+    components: {
+      Contents,
+    },
+  };
 </script>
