@@ -58,6 +58,7 @@
             :key="button"
             :href="button.url"
             target="_blank"
+            :class="'umami--click--'+button.name"
             class="flex flex-row w-full bg-teriary justify-center items-center px-2 py-2 rounded-md font-cinzel font-bold transition ease-in-out duration-300 transform hover:-translate-y-1 hover:bg-purple">
             <Icon :name="button.icon"/>
             <span
@@ -74,6 +75,7 @@
             :key="button"
             :href="button.url"
             target="_blank"
+            :class="button.name ? 'umami--click--'+button.name : 'umami--click--'+button.icon"
             class=" flex flex-col items-center justify-center w-8 h-8 bg-teriary rounded-full transition duration-300 ease-in-out transform hover:-translate-y-1 hover:bg-purple">
             <Icon :name="button.icon" />
           </a>
@@ -96,11 +98,11 @@
         mangas: [],
         buttonSmall: [
           { icon: "rss", url: "/api/rss" },
-          { icon: "globe", url: "https://lapetite.moe" },
-          { icon: "edit", url: "https://papan.lapetite.moe" },
+          { icon: "globe", name: "homepage",  url: "https://lapetite.moe" },
+          { icon: "edit", name: "imageboard", url: "https://papan.lapetite.moe" },
           { icon: "github", url: "https://github.com/nikotile/lapetitefe" },
           { icon: "twitter", url: "https://twitter.com/lapetitemoe" },
-          { icon: "message-circle", url: "https://discord.gg/K9UWEgsCCY" },
+          { icon: "message-circle", name: "discord", url: "https://discord.gg/K9UWEgsCCY" },
         ],
         buttonBig: [
           {

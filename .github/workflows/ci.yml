@@ -48,3 +48,5 @@ jobs:
             git stash
             git pull --force origin main
             npm run build
+            sed -i 1d dist/index.html
+            pm2 reload manga

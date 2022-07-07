@@ -17,18 +17,15 @@ npm run dev
 
 # vite build / build for production
 npm run build
-
-# vite preview
-npm run serve
-
-# linting 
-npm run lint
 ```
+
+## Analytics
+Uses a self-hosted Umami instance. See Umami's [FAQ](https://umami.is/docs/faq). Specific event trackers for social links are in `src/components/SideContent.vue`
 
 ## To-do
 
 - [x] Make it work
-- [ ] Pagination in the main page
+- [x] Pagination in the main page
 - [ ] Cookies-based theme/user preference(s)
 - [ ] Make it less idiotic
 
