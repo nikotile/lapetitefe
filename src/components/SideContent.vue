@@ -99,7 +99,6 @@
         buttonSmall: [
           { icon: "rss", url: "/api/rss" },
           { icon: "globe", name: "homepage",  url: "https://lapetite.moe" },
-          { icon: "edit", name: "imageboard", url: "https://papan.lapetite.moe" },
           { icon: "github", url: "https://github.com/nikotile/lapetitefe" },
           { icon: "twitter", url: "https://twitter.com/lapetitemoe" },
           { icon: "message-circle", name: "discord", url: "https://discord.gg/K9UWEgsCCY" },
